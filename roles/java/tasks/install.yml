@@ -1,0 +1,16 @@
+---
+- name: install oracle jdk8 software
+  yum: name=/home/test2/java8/jdk-8u111-linux-x64.rpm state=present
+- name: check which java info
+  command: which java
+  register: result1
+- debug: var=result1.stdout
+- name: get java version 
+  shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+  register: java_version
+- debug: var=java_version.stdout
+#- assert:
+#    that: 
+#      - java_version.stdout | version_compare('1.7', '>=') 
+- name: set JAVA_HOME
+  

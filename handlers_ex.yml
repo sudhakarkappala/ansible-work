@@ -1,0 +1,18 @@
+---
+- hosts: '{{ host_name }}'
+  connection: ssh
+  sudo: yes
+  user: '{{ user_name }}'
+  vars_files:
+   - input1.yml
+  tasks:
+   - name: install httpd
+     yum: name={{ pkg }} state=installed
+   - name: remove file from html directory
+     file: path=/var/www/html/index.html state=absent
+   - name: copy index.html
+     copy: src=index.html dest=/var/www/html/
+     notify: start httpd service
+  handlers:
+   - name: start httpd service
+     service: name={{ pkg }} state=started

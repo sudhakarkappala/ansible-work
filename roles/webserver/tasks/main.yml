@@ -1,0 +1,6 @@
+---
+ - name: uninstall {{pkg}} if exists
+   yum: name={{pkg}} state=absent
+ - name: install {{pkg}} package
+   yum: name={{pkg}} state=installed
+   #notify: start {{pkg}} service

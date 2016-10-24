@@ -1,0 +1,11 @@
+---
+- hosts: node1
+  connection: ssh
+  sudo: yes
+  tasks:
+   - name: stop service
+     service: name=httpd state=stopped
+   - name: rm index.html from html directory
+     file: path=/var/www/html/index.html state=absent
+   - name: uninstall httpd package
+     yum: name=httpd state=removed

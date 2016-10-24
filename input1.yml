@@ -1,0 +1,4 @@
+---
+host_name: node1
+user_name: test2
+pkg: httpd

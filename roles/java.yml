@@ -1,0 +1,7 @@
+---
+- hosts: '{{ host_name }}'
+  connection: ssh
+  user: '{{ user_name }}'
+  become: yes
+  roles:
+    - java

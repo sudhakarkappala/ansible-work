@@ -1,0 +1,17 @@
+---
+- hosts: '{{ host_name }}'
+  connection: ssh
+  user: '{{ user_name }}'
+  become: yes
+  vars:
+      - pkg1: httpd
+  vars_files: 
+      - input1.yml
+  tasks:
+      - name: frame command to execute simple statement
+        command: echo "hello world" creates=/home/test2/i2.html
+      - name: check chdir as args
+        command: echo "hello2" 
+        args:
+         chdir: /home/test2 
+         creates: /home/test2/test2.html

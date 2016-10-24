@@ -1,0 +1,15 @@
+---
+- hosts: '{{host_name}}'
+  connection: ssh
+  sudo: yes
+  user: '{{ user_name }}'
+  gather_facts: yes
+  vars_files:
+   - input1.yml
+  vars:
+   pkg2: httpd
+  tasks:
+   - name: uninstall {{ pkg2 }}
+     yum: name={{pkg2}} state=removed
+   ##  register: result12
+   ##  debug: var=result12

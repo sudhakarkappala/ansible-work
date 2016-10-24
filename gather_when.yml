@@ -1,0 +1,17 @@
+---
+- hosts: '{{host_name}}'
+  become: yes
+  gather_facts: yes
+  user: '{{user_name}}'
+  connection: ssh
+  vars: 
+      - pkg1: httpd
+  vars_files: 
+      - input1.yml
+  tasks:
+     - name: uninstall httpd package
+       yum: name={{pkg1}} state=absent
+       #register: ansible_os_family
+       #debug: var = ansible_os_family
+       when: ansible_distribution == "CentOS"
+       

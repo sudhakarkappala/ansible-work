@@ -1,0 +1,13 @@
+---
+- hosts: '{{node1}}'
+  sudo: yes
+  user: test2
+  gather_facts: yes
+  vars:
+       packg=httpd
+  vars_file:
+       ./host_names.yml
+  tasks:
+    - name: uninstall httpd package
+      yum: name={{pkg}} state=absent
+    

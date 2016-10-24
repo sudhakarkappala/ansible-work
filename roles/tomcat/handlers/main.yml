@@ -1,0 +1,6 @@
+---
+ - name: start tomcat server
+   command: /home/test2/mytomcat7/apache-tomcat-7.0.72/bin/startup.sh
+   sudo: true
+   sudo_user: test2
+   

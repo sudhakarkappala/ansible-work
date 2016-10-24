@@ -1,0 +1,36 @@
+---
+- name: creates archive directory
+  file: 
+   path={{ archive_path }}
+   state=directory
+   owner=test2
+   group=test2
+   recurse=yes
+
+- name: download tomcat
+  get_url: 
+   url=http://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.72/bin/apache-tomcat-7.0.72.tar.gz
+   dest={{ archive_path }}
+   mode=0777
+   
+- name: create installation directory
+  file:
+   path={{ installed_path }}
+   state=directory
+   owner={{ user_name }}
+   group={{ user_name }}
+
+- name: unarchive tomcat tar file
+  unarchive:
+     copy=no 
+     owner=test2
+     group=test2     
+     src=/home/test2/tomcat/apache-tomcat-7.0.72.tar.gz
+     dest={{ installed_path }}
+  notify: start tomcat server
+- name: change directories to test2 user
+  file:
+       path=/home/test2/mytomcat7
+       recurse=yes
+       group=test2
+       owner=test2 

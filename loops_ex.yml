@@ -1,0 +1,14 @@
+---
+- hosts: '{{ host_name }}'
+  connection: ssh
+  sudo: yes
+  user: '{{user_name}}'
+  vars_files:
+   - input1.yml 
+  tasks:
+    - name: creating users
+      user: name={{ item }} password="redhat"
+      with_items:
+        - auser1
+        - auser2
+        - auser3

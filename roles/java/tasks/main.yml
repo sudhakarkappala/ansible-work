@@ -1,0 +1,8 @@
+---
+- include: install.yml
+#- name: create directory to download java software
+#  file: path=/home/test2/java8 state=directory owner={{ user_name }} group={{ user_name }} mode=0755
+#- name: download jdk from oracle site
+#  get_url: url=http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.rpm dest=/home/test2/java8
+#- name: unarchive jdk tar file
+#  unarchive: src=/home/test2/java8/jdk-8u111-linux-x64.tar.gz dest=/home/test2/java8 copy=no

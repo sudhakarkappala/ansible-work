@@ -1,0 +1,15 @@
+---
+- hosts: '{{host_name}}'
+  connection: ssh
+  user: '{{user_name}}'
+  sudo: yes
+  gather_facts: yes
+  vars_files:
+    - input1.yml       
+  tasks:
+    - name: install {{pkg}}
+      yum: name={{pkg}} state=installed
+    - name: copy index.html
+      copy: src=index.html dest=/var/www/html/
+    - name: uninstall {{pkg}}
+      yum: name={{pkg}} state=removed
